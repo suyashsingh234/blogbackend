@@ -9,8 +9,6 @@
 import requests
 import json
 
-from requests.api import request
-
 #a={'hello':'world','suyash':'singh'}
 #print(a['hello'])
 
@@ -42,13 +40,14 @@ def postToMedium(content,mediumToken):
             'Accept': 'application/json',
             'Accept-Charset': 'utf-8'
             }
-    data={
+    data=json.dumps(
+        {
         'title':content['title'],
         'contentFormat':content['contentFormat'],
         'content':content['content'],
         'tags':content['tags']
     }
-    data=json.dumps(data)
+    )
     
     response=requests.post(url,headers=headers,data=data)
     print('Medium Post response: ',response)
