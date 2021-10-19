@@ -25,13 +25,13 @@ def post():
     mediumToken=request.args.get('mediumToken')
     if medium=='True' and mediumToken is not None:
         print('function postToMedium called')
-        #postToMedium(content,mediumToken)
+        postToMedium(content,mediumToken)
     
     hashnode=request.args.get('hashnode')
     hashnodeToken=request.args.get('hashnodeToken')
     if hashnode=='True' and hashnodeToken is not None:
         print('function postToHashnode called')
-        #postToHashnode(content,hashnodeToken)
+        postToHashnode(content,hashnodeToken)
 
     devto=request.args.get('devto')
     devtoToken=request.args.get('devtoToken')
