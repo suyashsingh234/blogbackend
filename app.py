@@ -9,8 +9,9 @@ from medium import postToMedium
 from hashnode import postToHashnode
 from devto import postToDevto
 
+PORT = os.environ.get('PORT',5000)
+
 app=Flask(__name__)
-app.run(debug=True)
 
 @app.route('/')
 def index():
@@ -43,4 +44,5 @@ def post():
 
     
     
-    
+if __name__=='__main__':
+    app.run(debug=True,port=PORT)
