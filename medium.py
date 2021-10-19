@@ -1,7 +1,6 @@
 # integration token
 # content={"title": "Liverpool FC",
 #  "contentFormat": "html",
-#  "content": "<h1>Liverpool FC</h1><p>You’ll never walk alone.</p>",
 #  "tags": ["football", "sport", "Liverpool"]
 #   }
 # mediumToken = <integration token>
