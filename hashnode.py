@@ -33,6 +33,5 @@ def postToHashnode(content,hashnodeToken):
     )
 
     response=requests.post(url,headers=headers,data=data)
-    print('Hashnode Post response: ',response.content)
 
-    return 'postToHashnode end';
+    return response.status_code

@@ -22,25 +22,27 @@ def post():
     content=request.get_data()
     content=json.loads(content)
 
+    response=dict()
+
     medium=request.args.get('medium')
     mediumToken=request.args.get('mediumToken')
     if medium=='True' and mediumToken is not None:
         print('function postToMedium called')
-        postToMedium(content,mediumToken)
+        response['Medium']=postToMedium(content,mediumToken)
     
     hashnode=request.args.get('hashnode')
     hashnodeToken=request.args.get('hashnodeToken')
     if hashnode=='True' and hashnodeToken is not None:
         print('function postToHashnode called')
-        postToHashnode(content,hashnodeToken)
+        response['Hashnode']=postToHashnode(content,hashnodeToken)
 
     devto=request.args.get('devto')
     devtoToken=request.args.get('devtoToken')
     if devto=='True' and devtoToken is not None:
         print('function postToDevto called')
-        postToDevto(content,devtoToken)
+        response['Devto']=postToDevto(content,devtoToken)
 
-    return 'post end'
+    return json.dumps(response)
 
     
     

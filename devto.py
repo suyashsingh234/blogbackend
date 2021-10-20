@@ -27,6 +27,4 @@ def postToDevto(content,devtoToken):
 
     response=requests.post(url,headers=headers,data=data)
 
-    print('Devto Post response: ',response)
-
-    return 'Devto end'
+    return response.status_code

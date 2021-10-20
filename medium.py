@@ -49,6 +49,5 @@ def postToMedium(content,mediumToken):
     )
     
     response=requests.post(url,headers=headers,data=data)
-    print('Medium Post response: ',response)
 
-    return 'postToMedium end'
+    return response.status_code
