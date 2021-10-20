@@ -24,17 +24,33 @@ def index():
 @app.route('/post',methods=['POST'])
 @cross_origin()
 def post():
-    content=request.form.get('content')
-    medium=request.form.get('medium')
-    mediumToken=request.form.get('mediumToken')
-    hashnode=request.form.get('hashnode')
-    hashnodeToken=request.form.get('hashnodeToken')
-    devto=request.form.get('devto')
-    devtoToken=request.form.get('devtoToken')
+    
+    ###########post parse
+    formData=request.form
+    formData=formData.to_dict()
+    formData=list(formData.keys())[0]
+    formData=json.loads(formData)
+    ###########
 
-    print(content,devtoToken)
+    #################variables 
+    content=medium=mediumToken=hashnode=hashnodeToken=devto=devtoToken=None
 
-    content=json.loads(content)
+    if 'content' in formData.keys():
+        content= formData['content']
+        content=json.loads(content)
+    if 'medium' in formData.keys():
+        medium=formData['medium']
+    if 'mediumToken' in formData.keys():
+        mediumToken=formData['mediumToken']
+    if 'hashnode' in formData.keys():
+        hashnode=formData['hashnode']
+    if 'hashnodeToken' in formData.keys():
+        hashnodeToken=formData['hashnodeToken']
+    if 'devto' in formData.keys():
+        devto=formData['devto']
+    if 'devtoToken' in formData.keys():
+        devtoToken=formData['devtoToken']
+    ####################################
 
     response=dict()
 
@@ -51,6 +67,7 @@ def post():
         print('function postToDevto called')
         response['Devto']=postToDevto(content,devtoToken)
 
+    print(response)
     return json.dumps(response)
 
     
