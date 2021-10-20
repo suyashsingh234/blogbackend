@@ -24,25 +24,25 @@ def index():
 @app.route('/post',methods=['POST'])
 @cross_origin()
 def post():
-    content=request.get_data()
+    content=request.form.get('content')
     content=json.loads(content)
 
     response=dict()
 
-    medium=request.args.get('medium')
-    mediumToken=request.args.get('mediumToken')
+    medium=request.form.get('medium')
+    mediumToken=request.form.get('mediumToken')
     if medium=='True' and mediumToken is not None:
         print('function postToMedium called')
         response['Medium']=postToMedium(content,mediumToken)
     
-    hashnode=request.args.get('hashnode')
-    hashnodeToken=request.args.get('hashnodeToken')
+    hashnode=request.form.get('hashnode')
+    hashnodeToken=request.form.get('hashnodeToken')
     if hashnode=='True' and hashnodeToken is not None:
         print('function postToHashnode called')
         response['Hashnode']=postToHashnode(content,hashnodeToken)
 
-    devto=request.args.get('devto')
-    devtoToken=request.args.get('devtoToken')
+    devto=request.form.get('devto')
+    devtoToken=request.form.get('devtoToken')
     if devto=='True' and devtoToken is not None:
         print('function postToDevto called')
         response['Devto']=postToDevto(content,devtoToken)
