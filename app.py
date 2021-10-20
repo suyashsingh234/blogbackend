@@ -25,24 +25,28 @@ def index():
 @cross_origin()
 def post():
     content=request.form.get('content')
+    medium=request.form.get('medium')
+    mediumToken=request.form.get('mediumToken')
+    hashnode=request.form.get('hashnode')
+    hashnodeToken=request.form.get('hashnodeToken')
+    devto=request.form.get('devto')
+    devtoToken=request.form.get('devtoToken')
+
+    print(content,devtoToken)
+
     content=json.loads(content)
 
     response=dict()
 
-    medium=request.form.get('medium')
-    mediumToken=request.form.get('mediumToken')
+    
     if medium=='True' and mediumToken is not None:
         print('function postToMedium called')
         response['Medium']=postToMedium(content,mediumToken)
     
-    hashnode=request.form.get('hashnode')
-    hashnodeToken=request.form.get('hashnodeToken')
     if hashnode=='True' and hashnodeToken is not None:
         print('function postToHashnode called')
         response['Hashnode']=postToHashnode(content,hashnodeToken)
 
-    devto=request.form.get('devto')
-    devtoToken=request.form.get('devtoToken')
     if devto=='True' and devtoToken is not None:
         print('function postToDevto called')
         response['Devto']=postToDevto(content,devtoToken)
