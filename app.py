@@ -4,6 +4,7 @@
 import os 
 import json
 from flask import Flask, request
+from flask_cors import CORS, cross_origin
 
 from medium import postToMedium
 from hashnode import postToHashnode
@@ -12,12 +13,16 @@ from devto import postToDevto
 PORT = os.environ.get('PORT',5000)
 
 app=Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/')
+@cross_origin()
 def index():
     return 'hello world!'
 
 @app.route('/post',methods=['POST'])
+@cross_origin()
 def post():
     content=request.get_data()
     content=json.loads(content)
