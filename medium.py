@@ -32,8 +32,9 @@ def getAuthorId(mediumToken):
 def postToMedium(content,mediumToken):
     authorId=getAuthorId(mediumToken)
 
-    content['tags']=ast.literal_eval(content['tags'])
-    print(content['tags'])
+    if(isinstance(content['tags'],str)):
+        content['tags']=ast.literal_eval(content['tags'])
+    
 
     url='https://api.medium.com/v1/users/'+authorId+'/posts'
     headers={
